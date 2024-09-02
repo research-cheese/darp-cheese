@@ -4,7 +4,7 @@ import os
 id2label = {0: "construction", 1: "nature", 2: "pedestrian", 3: "vehicle"}
 label2id = {v: k for k, v in id2label.items()}
 
-for dataset in ["airsim/dust-10"]:
+for dataset in ["airsim/dust-10/train"]:
     for checkpoint in [
         "facebook/detr-resnet-50",
         "facebook/detr-resnet-101",
