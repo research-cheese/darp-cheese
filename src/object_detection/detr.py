@@ -176,8 +176,6 @@ def apply_image_augmentations(dataset: Dataset, image_processor):
 
     dataset["train"] = dataset["train"].with_transform(train_transform_batch)
     dataset["val"] = dataset["val"].with_transform(validation_transform_batch)
-
-    print(dataset["val"])
     return dataset
 
 
