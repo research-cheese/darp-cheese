@@ -177,10 +177,15 @@ def apply_image_augmentations(dataset: Dataset, image_processor):
     dataset["train"] = dataset["train"].with_transform(train_transform_batch)
     dataset["val"] = dataset["val"].with_transform(validation_transform_batch)
 
+    print(dataset["val"])
     return dataset
 
 
-def collate_fn(batch):
+def make_collate_fn(image_processor):
+    return partial(collate_fn, image_processor=image_processor)
+
+
+def collate_fn(batch, image_processor):
     data = {}
     data["pixel_values"] = torch.stack([x["pixel_values"] for x in batch])
     data["labels"] = [x["labels"] for x in batch]
@@ -338,6 +343,7 @@ def train_model_on_dataset(model, image_processor, dataset_path, output_path):
     eval_dataset: The dataset to evaluate on
     """
     dataset = load_local_dataset(dataset_path)
+    dataset = apply_image_augmentations(dataset, image_processor)
 
     trainer = build_trainer(
         model, image_processor, dataset["train"], dataset["val"], output_path
