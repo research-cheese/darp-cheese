@@ -185,7 +185,7 @@ def make_collate_fn(image_processor):
     return partial(collate_fn, image_processor=image_processor)
 
 
-def collate_fn(batch, image_processor):
+def collate_fn(batch):
     data = {}
     data["pixel_values"] = torch.stack([x["pixel_values"] for x in batch])
     data["labels"] = [x["labels"] for x in batch]
