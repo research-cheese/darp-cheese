@@ -1,6 +1,7 @@
 python3 -m venv venv
 source venv/bin/activate
 
+pip install peft
 pip install datasets
 pip install pillow
 pip install albumentations
