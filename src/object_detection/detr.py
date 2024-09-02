@@ -296,7 +296,7 @@ def compute_metrics(evaluation_results, image_processor, threshold=0.0, id2label
 
 
 def build_trainer(
-    model, image_processor, train_dataset, eval_dataset, output_path
+    model, image_processor, train_dataset, id2label, eval_dataset, output_path
 ) -> Trainer:
     training_args = TrainingArguments(
         output_dir=os.path.join(output_path, "outputs"),
@@ -319,6 +319,13 @@ def build_trainer(
         push_to_hub=False,
     )
 
+    eval_compute_metrics_fn = partial(
+        compute_metrics,
+        image_processor=image_processor,
+        id2label=id2label,
+        threshold=0.0,
+    )
+
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -326,13 +333,15 @@ def build_trainer(
         eval_dataset=eval_dataset,
         tokenizer=image_processor,
         data_collator=collate_fn,
-        compute_metrics=compute_metrics,
+        compute_metrics=eval_compute_metrics_fn,
     )
 
     return trainer
 
 
-def train_model_on_dataset(model, image_processor, dataset_path, output_path):
+def train_model_on_dataset(
+    model, image_processor, id2label, label2id, dataset_path, output_path
+):
     """
     Train the model on the dataset
 
@@ -346,7 +355,12 @@ def train_model_on_dataset(model, image_processor, dataset_path, output_path):
     dataset = apply_image_augmentations(dataset, image_processor)
 
     trainer = build_trainer(
-        model, image_processor, dataset["train"], dataset["val"], output_path
+        model=model,
+        image_processor=image_processor,
+        train_dataset=dataset["train"],
+        eval_dataset=dataset["val"],
+        output_path=output_path,
+        id2label=id2label,
     )
     trainer.train()
     trainer.save_model(os.path.join(output_path, "model.pth"))
@@ -374,7 +388,14 @@ def train_base_model(
         ignore_mismatched_sizes=True,
     )
 
-    train_model_on_dataset(model, image_processor, dataset_dir, output_dir)
+    train_model_on_dataset(
+        model=model,
+        image_processor=image_processor,
+        dataset_path=dataset_dir,
+        output_path=output_dir,
+        id2label=id2label,
+        label2id=label2id,
+    )
 
 
 def train_peft_model(
@@ -399,7 +420,14 @@ def train_peft_model(
         ignore_mismatched_sizes=True,
     )
     peft_model = get_peft_model(model, peft_config)
-    train_model_on_dataset(peft_model, image_processor, dataset_dir, output_dir)
+    train_model_on_dataset(
+        model=peft_model,
+        image_processor=image_processor,
+        dataset_path=dataset_dir,
+        output_path=output_dir,
+        id2label=id2label,
+        label2id=label2id,
+    )
 
 
 # ============================================================
