@@ -4,6 +4,20 @@ import os
 from training_configs import AirsimObjectDetectionConfig
 
 for checkpoint in AirsimObjectDetectionConfig.checkpoints:
+    output_dir_base = os.path.join(
+        "output",
+        AirsimObjectDetectionConfig.base_dataset,
+        checkpoint,
+        "base"
+    )
+
+    train_base_model(
+        checkpoint=checkpoint,
+        id2label=AirsimObjectDetectionConfig.id2label,
+        label2id=AirsimObjectDetectionConfig.label2id,
+        dataset_dir=AirsimObjectDetectionConfig.base_dataset,
+        output_dir=output_dir_base,
+    )
     for dataset in AirsimObjectDetectionConfig.datasets:
 
         output_dir = os.path.join(
@@ -11,43 +25,39 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             dataset,
             checkpoint
         )
-        output_dir_base = os.path.join(
-            output_dir,
-            "base"
-        )
         dataset_dir = os.path.join("data", dataset)
 
-        # train_base_model(
-        #     checkpoint=checkpoint,
+        train_base_model(
+            checkpoint=checkpoint,
+            id2label=AirsimObjectDetectionConfig.id2label,
+            label2id=AirsimObjectDetectionConfig.label2id,
+            dataset_dir=dataset_dir,
+            output_dir=os.path.join(output_dir, "base"),
+        )
+
+        # output_base_model_path = os.path.join(output_dir_base, "model.pth")
+        
+        # Train PEFT models ========================================
+        # train_peft_model_lora(
+        #     checkpoint=output_base_model_path,
         #     id2label=AirsimObjectDetectionConfig.id2label,
         #     label2id=AirsimObjectDetectionConfig.label2id,
         #     dataset_dir=dataset_dir,
-        #     output_dir=output_dir_base,
+        #     output_dir=os.path.join(output_dir, "lora")
+        # )
+        
+        # train_peft_model_ia3(
+        #     checkpoint=output_base_model_path,
+        #     id2label=AirsimObjectDetectionConfig.id2label,
+        #     label2id=AirsimObjectDetectionConfig.label2id,
+        #     dataset_dir=dataset_dir,
+        #     output_dir=os.path.join(output_dir, "ia3"),
         # )
 
-        output_base_model_path = os.path.join(output_dir_base, "model.pth")
-        
-        # Train PEFT models ========================================
-        train_peft_model_lora(
-            checkpoint=output_base_model_path,
-            id2label=AirsimObjectDetectionConfig.id2label,
-            label2id=AirsimObjectDetectionConfig.label2id,
-            dataset_dir=dataset_dir,
-            output_dir=os.path.join(output_dir, "lora")
-        )
-        
-        train_peft_model_ia3(
-            checkpoint=output_base_model_path,
-            id2label=AirsimObjectDetectionConfig.id2label,
-            label2id=AirsimObjectDetectionConfig.label2id,
-            dataset_dir=dataset_dir,
-            output_dir=os.path.join(output_dir, "ia3"),
-        )
-
-        train_peft_model_lntuning(
-            checkpoint=output_base_model_path,
-            id2label=AirsimObjectDetectionConfig.id2label,
-            label2id=AirsimObjectDetectionConfig.label2id,
-            dataset_dir=dataset_dir,
-            output_dir=os.path.join(output_dir, "lntuning"),
-        )
+        # train_peft_model_lntuning(
+        #     checkpoint=output_base_model_path,
+        #     id2label=AirsimObjectDetectionConfig.id2label,
+        #     label2id=AirsimObjectDetectionConfig.label2id,
+        #     dataset_dir=dataset_dir,
+        #     output_dir=os.path.join(output_dir, "lntuning"),
+        # )
