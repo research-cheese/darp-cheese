@@ -5,14 +5,14 @@ class AirsimObjectDetectionConfig:
     base_dataset = "airsim/train-10000/train"
     datasets = ["airsim/dust-10/train"]
     checkpoints = [
-        # Ultralytics   
-        "Ultralytics/YOLOv8",
+        "hustvl/yolos-tiny",
+        "hustvl/yolos-small",
+        "hustvl/yolos-base",
 
         # Facebook
         "facebook/detr-resnet-50",
         "facebook/detr-resnet-101",
 
-
         # Peking University
-        "PekingU/rtdetr_r101vd_coco_o365"
+        "PekingU/rtdetr_r18vd_coco_o365"
     ]
