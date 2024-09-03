@@ -12,6 +12,7 @@ class AirsimObjectDetectionConfig:
         "facebook/detr-resnet-50",
         "facebook/detr-resnet-101",
 
+
         # Peking University
         "PekingU/rtdetr_r101vd_coco_o365"
     ]
