@@ -413,6 +413,7 @@ def train_peft_model(
         ignore_mismatched_sizes=True,
     )
     print(model)
+    input("Press Enter to continue...")
     peft_model = get_peft_model(model, peft_config)
     train_model_on_dataset(
         model=peft_model,
