@@ -6,7 +6,7 @@ class AirsimObjectDetectionConfig:
     datasets = ["airsim/dust-10/train"]
     checkpoints = [
         # Peking University
-        "PekingU/rtdetr_r18vd_coco_o365"
+        "PekingU/rtdetr_r18vd_coco_o365",
 
         # HUST Vision Lab
         "hustvl/yolos-tiny",
