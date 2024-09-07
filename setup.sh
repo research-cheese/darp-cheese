@@ -11,3 +11,4 @@ pip install dataclasses
 pip install numpy
 pip install transformers[torch]
 pip install pycocotools
+pip install transformers

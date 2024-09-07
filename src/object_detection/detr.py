@@ -440,7 +440,7 @@ def train_peft_model_lora(
         lora_alpha=16,
         lora_dropout=0.1,
         bias="none",
-        # target_modules=["k_proj", "v_proj", "q_proj", "out_proj", "fc1", "fc2"],
+        target_modules=["k_proj", "v_proj", "q_proj", "out_proj", "fc1", "fc2"],
         modules_to_save=["class_labels_classifier", "bbox_predictor"],
     )
     train_peft_model(
@@ -456,8 +456,8 @@ def train_peft_model_ia3(
     output_dir: str,
 ):
     ia3_config = IA3Config(
-        # target_modules=["k_proj", "v_proj", "q_proj", "out_proj", "fc1", "fc2"],
-        # feedforward_modules=["fc1", "fc2"],
+        target_modules=["k_proj", "v_proj", "q_proj", "out_proj", "fc1", "fc2"],
+        feedforward_modules=["fc1", "fc2"],
         modules_to_save=["class_labels_classifier", "bbox_predictor"],
     )
 
@@ -474,12 +474,12 @@ def train_peft_model_lntuning(
     output_dir: str,
 ):
     lntuning_config = LNTuningConfig(
-        # target_modules=[
-        #     "self_attn_layer_norm",
-        #     "final_layer_norm",
-        #     "encoder_attn_layer_norm",
-        #     "layernorm",
-        # ],
+        target_modules=[
+            "self_attn_layer_norm",
+            "final_layer_norm",
+            "encoder_attn_layer_norm",
+            "layernorm",
+        ],
         modules_to_save=["class_labels_classifier", "bbox_predictor"],
     )
     train_peft_model(

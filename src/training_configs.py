@@ -7,14 +7,11 @@ class AirsimObjectDetectionConfig:
     checkpoints = [
         # Peking University
         "PekingU/rtdetr_r18vd_coco_o365",
-
         # HUST Vision Lab
         "hustvl/yolos-tiny",
         "hustvl/yolos-small",
         "hustvl/yolos-base",
-
         # Facebook
         "facebook/detr-resnet-50",
         "facebook/detr-resnet-101",
-
     ]
