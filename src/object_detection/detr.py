@@ -506,7 +506,7 @@ def evaluate_base_model(
         image = Image.open(os.path.join(dataset_dir, data))
         image = image.convert("RGB")
         inputs = image_processor(images=[image], return_tensors="pt")
-        outputs = model(**inputs.to("cuda"))
+        outputs = model(**inputs)
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
         results = image_processor.post_process_object_detection(outputs, threshold=0.3, target_sizes=target_sizes)[0]
         print(results)
