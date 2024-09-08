@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -L gracehopper
-#SBATCH -p general      # partition 
-#SBATCH -q public # queue
+#SBATCH -p highmem      # partition 
+#SBATCH -q grp_scai_research_priority # queue
 #SBATCH -t 1-12:00:00   # time in d-hh:mm:ss
 #SBATCH -G 1            # number of GPU 
 #SBATCH -N 1            # number of nodes
