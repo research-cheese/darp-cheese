@@ -16,4 +16,4 @@
 #Load CuDA
 module load cuda-12.6.1-gcc-12.1.0
 
-source a.sh
+# source a.sh
