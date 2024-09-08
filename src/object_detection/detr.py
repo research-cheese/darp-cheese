@@ -485,3 +485,26 @@ def train_peft_model_lntuning(
     train_peft_model(
         checkpoint, lntuning_config, id2label, label2id, dataset_dir, output_dir
     )
+
+def evaluate_base_model(
+    dataset_dir: str,
+    checkpoint: Path,
+    id2label: Dict[int, str],
+    label2id: Dict[str, int],
+):
+    image_processor = AutoImageProcessor.from_pretrained(checkpoint)
+    model = AutoModelForObjectDetection.from_pretrained(
+        checkpoint,
+        id2label=id2label,
+        label2id=label2id,
+        ignore_mismatched_sizes=True,
+    )
+
+    for data in os.listdir(dataset_dir):
+        image = Image.open(os.path.join(dataset_dir, data))
+        inputs = image_processor(images=[image], return_tensors="pt")
+        outputs = model(**inputs)
+        target_sizes = torch.tensor([[image.size[1], image.size[0]]])
+        results = image_processor.post_process_object_detection(outputs, threshold=0.3, target_sizes=target_sizes)[0]
+        print(results)
+        input("Press Enter to continue...")

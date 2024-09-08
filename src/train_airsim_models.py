@@ -20,6 +20,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             dataset_dir=AirsimObjectDetectionConfig.base_dataset,
             output_dir=output_dir_base,
         )
+
     for dataset in AirsimObjectDetectionConfig.datasets:
 
         output_dir = os.path.join(
