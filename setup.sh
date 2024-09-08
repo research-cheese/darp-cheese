@@ -2,7 +2,12 @@ python3 -m venv venv
 source venv/bin/activate
 
 pip install peft
+
+# datasets
+pip install multidict
 pip install datasets
+
+
 pip install pillow
 pip install albumentations
 pip install timm
