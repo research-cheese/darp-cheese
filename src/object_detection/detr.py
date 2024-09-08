@@ -501,6 +501,8 @@ def evaluate_base_model(
     )
 
     for data in os.listdir(dataset_dir):
+        if not data.endswith(".jpg") and not data.endswith(".png"): continue
+         
         image = Image.open(os.path.join(dataset_dir, data))
         inputs = image_processor(images=[image], return_tensors="pt")
         outputs = model(**inputs)

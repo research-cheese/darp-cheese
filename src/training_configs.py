@@ -3,6 +3,9 @@ class AirsimObjectDetectionConfig:
     label2id = {v: k for k, v in id2label.items()}
 
     base_dataset = "data/mcai/airsim-data/mixed/base"
+    test_dataset = "data/mcai/airsim-data/mixed/test/train"
+    val_dataset = "data/mcai/airsim-data/mixed/val/train"
+    
     datasets = [
         "data/mcai/airsim-data/mixed/dust-10",
         "data/mcai/airsim-data/mixed/dust-100",
