@@ -504,6 +504,7 @@ def evaluate_base_model(
         if not data.endswith(".jpg") and not data.endswith(".png"): continue
 
         image = Image.open(os.path.join(dataset_dir, data))
+        image = image.convert("RGB")
         inputs = image_processor(images=[image], return_tensors="pt")
         outputs = model(**inputs.to("cuda"))
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
