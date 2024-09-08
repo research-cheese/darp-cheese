@@ -502,10 +502,10 @@ def evaluate_base_model(
 
     for data in os.listdir(dataset_dir):
         if not data.endswith(".jpg") and not data.endswith(".png"): continue
-         
+
         image = Image.open(os.path.join(dataset_dir, data))
         inputs = image_processor(images=[image], return_tensors="pt")
-        outputs = model(**inputs)
+        outputs = model(**inputs.to("cuda"))
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
         results = image_processor.post_process_object_detection(outputs, threshold=0.3, target_sizes=target_sizes)[0]
         print(results)
