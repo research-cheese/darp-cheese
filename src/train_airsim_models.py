@@ -28,14 +28,16 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             dataset,
             checkpoint
         )
-
-        train_base_model(
-            checkpoint=output_dir_base_model_path,
-            id2label=AirsimObjectDetectionConfig.id2label,
-            label2id=AirsimObjectDetectionConfig.label2id,
-            dataset_dir=dataset,
-            output_dir=os.path.join(output_dir, "base"),
-        )
+        output_dir_base_dataset_path = os.path.join(output_dir, "base")
+        output_dir_base_dataset_model_path = os.path.join(output_dir, "base", "model.pth")
+        if not os.path.exists(output_dir_base_dataset_model_path):
+            train_base_model(
+                checkpoint=output_dir_base_model_path,
+                id2label=AirsimObjectDetectionConfig.id2label,
+                label2id=AirsimObjectDetectionConfig.label2id,
+                dataset_dir=dataset,
+                output_dir=output_dir_base_dataset_path,
+            )
 
         # output_base_model_path = os.path.join(output_dir_base, "model.pth")
         
