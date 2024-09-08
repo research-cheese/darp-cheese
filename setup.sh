@@ -4,13 +4,6 @@ source venv/bin/activate
 pip install peft
 
 # datasets
-pip install Cython
-pip install typing_extensions
-pip install attr
-pip install yarl
-pip install async-timeout
-pip install idna
-pip install multidict
 pip install datasets
 
 # transformers
