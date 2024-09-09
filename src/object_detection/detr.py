@@ -517,7 +517,6 @@ def evaluate_base_model(
         results = image_processor.post_process_object_detection(outputs, threshold=0.3, target_sizes=target_sizes)[0]
         proba = F.softmax(outputs["logits"], dim=-1)
 
-        print(proba)
         for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
             box = [round(i, 2) for i in box.tolist()]
             to_save.append({
