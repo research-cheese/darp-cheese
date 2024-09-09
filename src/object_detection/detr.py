@@ -492,6 +492,7 @@ def evaluate_base_model(
     id2label: Dict[int, str],
     label2id: Dict[str, int],
 ):
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     image_processor = AutoImageProcessor.from_pretrained(checkpoint)
     model = AutoModelForObjectDetection.from_pretrained(
         checkpoint,
@@ -499,14 +500,14 @@ def evaluate_base_model(
         label2id=label2id,
         ignore_mismatched_sizes=True,
     )
-
+    model.to(device)
     for data in os.listdir(dataset_dir):
         if not data.endswith(".jpg") and not data.endswith(".png"): continue
 
         image = Image.open(os.path.join(dataset_dir, data))
         image = image.convert("RGB")
         inputs = image_processor(images=[image], return_tensors="pt")
-        outputs = model(**inputs)
+        outputs = model(**inputs.to(device))
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
         results = image_processor.post_process_object_detection(outputs, threshold=0.3, target_sizes=target_sizes)[0]
         print(results)
