@@ -153,7 +153,7 @@ def apply_image_augmentations(dataset: Dataset, image_processor):
             albumentations.HueSaturationValue(p=0.1),
         ],
         bbox_params=albumentations.BboxParams(
-            format="coco", label_fields=["category"], clip=True, min_area=20
+            format="coco", label_fields=["category"], clip=True, min_area=10
         ),
     )
 
