@@ -1,4 +1,5 @@
 import os
+import json
 from typing import List, Tuple, Dict, Any
 from pathlib import Path
 from functools import partial
@@ -528,7 +529,7 @@ def evaluate_base_model(
                 "ymax": box[3],
                 "proba": proba
             })
-            print(
-                f"Detected {model.config.id2label[label.item()]} with confidence "
-                f"{round(score.item(), 3)} at location {box}"
-            )
+
+        with open(prediction_output_dir, "w") as f:
+            f.write(json.dumps(to_save, indent=4))
+            f.write("\n")
