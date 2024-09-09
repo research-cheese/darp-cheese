@@ -1,5 +1,6 @@
 import os
 import json
+import shutil
 from typing import List, Tuple, Dict, Any
 from pathlib import Path
 from functools import partial
@@ -530,6 +531,9 @@ def evaluate_base_model(
                 "proba": [round(p.item(), 3) for p in proba[0, label].tolist()]
             })
 
+        if os.path.exists(prediction_output_dir):
+            shutil.rmtree(prediction_output_dir)
+        os.mkdir(prediction_output_dir)
         prediction_json_path = os.path.join(prediction_output_dir, f"{data}.json")
         with open(prediction_json_path, "w") as f:
             for t in to_save:
