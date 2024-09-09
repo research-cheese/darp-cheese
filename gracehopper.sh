@@ -17,4 +17,5 @@
 module load cuda-12.4.1-gcc-11.4.1
 
 source setup.sh
+source train_airsim_models.sh
 source evaluate_airsim_models.sh
