@@ -528,16 +528,12 @@ def evaluate_base_model(
                     "ymax": box[3]
                 })
 
-            print(to_save)
-            input("Press Enter to continue...")
             threshold_output_dir = os.path.join(prediction_output_dir, f"threshold_{threshold}")
             if os.path.exists(threshold_output_dir):
                 shutil.rmtree(threshold_output_dir)
             os.makedirs(threshold_output_dir)
             prediction_json_path = os.path.join(threshold_output_dir, f"{data}.json")
 
-            print(f"Saving predictions to {prediction_json_path}")
-            input("Press Enter to continue...")
             with open(prediction_json_path, "w") as f:
                 f.write("")
                 for t in to_save:
