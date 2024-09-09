@@ -514,27 +514,30 @@ def evaluate_base_model(
         inputs = image_processor(images=[image], return_tensors="pt")
         outputs = model(**inputs.to(device))
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
-        results = image_processor.post_process_object_detection(outputs, threshold=0.1, target_sizes=target_sizes)[0]
-        proba = F.softmax(outputs["logits"], dim=-1)
+        for threshold in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
+            results = image_processor.post_process_object_detection(outputs, threshold=threshold, target_sizes=target_sizes)[0]
+            proba = F.softmax(outputs["logits"], dim=-1)
 
-        for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
-            box = [round(i, 2) for i in box.tolist()]
-            to_save.append({
-                "category": id2label[label.item()],
-                "category_id": label.item(),
-                "confidence": round(score.item(), 3),
-                "xmin": box[0],
-                "ymin": box[1],
-                "xmax": box[2],
-                "ymax": box[3],
-                "proba": [round(p.item(), 3) for p in proba[0, label].tolist()]
-            })
+            for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
+                box = [round(i, 2) for i in box.tolist()]
+                to_save.append({
+                    "category": id2label[label.item()],
+                    "category_id": label.item(),
+                    "confidence": round(score.item(), 3),
+                    "xmin": box[0],
+                    "ymin": box[1],
+                    "xmax": box[2],
+                    "ymax": box[3],
+                    "proba": [round(p.item(), 3) for p in proba[0, label].tolist()]
+                })
 
-        if os.path.exists(prediction_output_dir):
-            shutil.rmtree(prediction_output_dir)
-        os.mkdir(prediction_output_dir)
-        prediction_json_path = os.path.join(prediction_output_dir, f"{data}.json")
-        with open(prediction_json_path, "w") as f:
-            for t in to_save:
-                    f.write(json.dumps(t))
-                    f.write("\n")
+            threshold_output_dir = os.path.join(prediction_output_dir, f"threshold_{threshold}")
+            if os.path.exists(threshold_output_dir):
+                shutil.rmtree(threshold_output_dir)
+            os.mkdir(threshold_output_dir)
+            prediction_json_path = os.path.join(threshold_output_dir, f"{data}.json")
+            with open(prediction_json_path, "w") as f:
+                f.write("")
+                for t in to_save:
+                        f.write(json.dumps(t))
+                        f.write("\n")
