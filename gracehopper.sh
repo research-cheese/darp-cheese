@@ -2,7 +2,7 @@
 #SBATCH -L gracehopper
 #SBATCH -p highmem      # partition 
 #SBATCH -q grp_scai_research_priority # queue
-#SBATCH -t 3-00:00:00   # time in d-hh:mm:ss
+#SBATCH -t 7-00:00:00   # time in d-hh:mm:ss
 #SBATCH -G 1            # number of GPU 
 #SBATCH -N 1            # number of nodes
 #SBATCH -c 8            # number of cores 
