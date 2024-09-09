@@ -527,8 +527,7 @@ def evaluate_base_model(
                     "xmin": box[0],
                     "ymin": box[1],
                     "xmax": box[2],
-                    "ymax": box[3],
-                    "proba": [round(p.item(), 3) for p in proba[0, label].tolist()]
+                    "ymax": box[3]
                 })
 
             threshold_output_dir = os.path.join(prediction_output_dir, f"threshold_{threshold}")
