@@ -21,6 +21,7 @@ for eval_dataset in [
             id2label=AirsimObjectDetectionConfig.id2label,
             label2id=AirsimObjectDetectionConfig.label2id,
             dataset_dir=eval_dataset,
+            prediction_output_dir=os.path.join(output_dir_base, "predictions")
         )
 
         # for dataset in AirsimObjectDetectionConfig.datasets:

@@ -530,6 +530,8 @@ def evaluate_base_model(
                 "proba": proba
             })
 
-        with open(prediction_output_dir, "w") as f:
-            f.write(json.dumps(to_save, indent=4))
-            f.write("\n")
+        prediction_json_path = os.path.join(prediction_output_dir, f"{data}.json")
+        for t in to_save:
+            with open(prediction_json_path, "w") as f:
+                f.write(json.dumps(t))
+                f.write("\n")
