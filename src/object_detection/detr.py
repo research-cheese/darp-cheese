@@ -516,7 +516,6 @@ def evaluate_base_model(
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
         for threshold in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
             results = image_processor.post_process_object_detection(outputs, threshold=threshold, target_sizes=target_sizes)[0]
-
             for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
                 box = [round(i, 2) for i in box.tolist()]
                 to_save.append({
@@ -529,6 +528,8 @@ def evaluate_base_model(
                     "ymax": box[3]
                 })
 
+            print(to_save)
+            input("Press Enter to continue...")
             threshold_output_dir = os.path.join(prediction_output_dir, f"threshold_{threshold}")
             if os.path.exists(threshold_output_dir):
                 shutil.rmtree(threshold_output_dir)
