@@ -527,11 +527,11 @@ def evaluate_base_model(
                 "ymin": box[1],
                 "xmax": box[2],
                 "ymax": box[3],
-                "proba": proba
+                "proba": [round(p.item(), 3) for p in proba[0, label].tolist()]
             })
 
         prediction_json_path = os.path.join(prediction_output_dir, f"{data}.json")
-        for t in to_save:
-            with open(prediction_json_path, "w") as f:
-                f.write(json.dumps(t))
-                f.write("\n")
+        with open(prediction_json_path, "w") as f:
+            for t in to_save:
+                    f.write(json.dumps(t))
+                    f.write("\n")
