@@ -514,7 +514,7 @@ def evaluate_base_model(
         inputs = image_processor(images=[image], return_tensors="pt")
         outputs = model(**inputs.to(device))
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
-        results = image_processor.post_process_object_detection(outputs, threshold=0.3, target_sizes=target_sizes)[0]
+        results = image_processor.post_process_object_detection(outputs, threshold=0.1, target_sizes=target_sizes)[0]
         proba = F.softmax(outputs["logits"], dim=-1)
 
         for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
