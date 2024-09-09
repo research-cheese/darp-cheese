@@ -24,20 +24,22 @@ for eval_dataset in [
             prediction_output_dir=os.path.join(output_dir_base, "predictions")
         )
 
-        # for dataset in AirsimObjectDetectionConfig.datasets:
+        for dataset in AirsimObjectDetectionConfig.datasets:
 
-        #     output_dir = os.path.join(
-        #         "output",
-        #         dataset,
-        #         checkpoint
-        #     )
+            dataset_output_dir_model_pth = os.path.join(
+                "output",
+                dataset,
+                checkpoint,
+                "base",
+                "model.pth"
+            )
 
-        #     evaluate_base_model(
-        #         checkpoint=output_dir_base_model_path,
-        #         id2label=AirsimObjectDetectionConfig.id2label,
-        #         label2id=AirsimObjectDetectionConfig.label2id,
-        #         dataset_dir=eval_dataset,
-        #     )
+            evaluate_base_model(
+                checkpoint=dataset_output_dir_model_pth,
+                id2label=AirsimObjectDetectionConfig.id2label,
+                label2id=AirsimObjectDetectionConfig.label2id,
+                dataset_dir=eval_dataset,
+            )
 
             # output_base_model_path = os.path.join(output_dir_base, "model.pth")
             
