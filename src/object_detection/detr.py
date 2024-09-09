@@ -525,7 +525,8 @@ def evaluate_base_model(
                     "xmin": box[0],
                     "ymin": box[1],
                     "xmax": box[2],
-                    "ymax": box[3]
+                    "ymax": box[3],
+                    "probas": {id2label[i]: round(p, 3) for i, p in enumerate(F.softmax(results["logits"], dim=-1)[0].tolist())}
                 })
 
             print(to_save)
