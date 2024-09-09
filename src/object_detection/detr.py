@@ -533,7 +533,7 @@ def evaluate_base_model(
             threshold_output_dir = os.path.join(prediction_output_dir, f"threshold_{threshold}")
             if os.path.exists(threshold_output_dir):
                 shutil.rmtree(threshold_output_dir)
-            os.mkdir(threshold_output_dir)
+            os.makedirs(threshold_output_dir)
             prediction_json_path = os.path.join(threshold_output_dir, f"{data}.json")
             with open(prediction_json_path, "w") as f:
                 f.write("")
