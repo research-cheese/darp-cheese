@@ -19,7 +19,7 @@ from transformers import (
 from transformers.image_transforms import center_to_corners_format
 from peft import IA3Config, LoraConfig, LNTuningConfig, get_peft_model
 from peft.peft_model import PeftModel
-
+from torch.nn import functional as F
 
 # ============================================================
 # Dataset loading functions
@@ -491,6 +491,7 @@ def evaluate_base_model(
     checkpoint: Path,
     id2label: Dict[int, str],
     label2id: Dict[str, int],
+    prediction_output_dir: str,
 ):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     image_processor = AutoImageProcessor.from_pretrained(checkpoint)
@@ -501,6 +502,8 @@ def evaluate_base_model(
         ignore_mismatched_sizes=True,
     )
     model.to(device)
+
+    to_save = []
     for data in os.listdir(dataset_dir):
         if not data.endswith(".jpg") and not data.endswith(".png"): continue
 
@@ -510,5 +513,22 @@ def evaluate_base_model(
         outputs = model(**inputs.to(device))
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
         results = image_processor.post_process_object_detection(outputs, threshold=0.3, target_sizes=target_sizes)[0]
-        print(results)
-        input("Press Enter to continue...")
+        proba = F.softmax(outputs["logits"], dim=-1)
+
+        print(proba)
+        for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
+            box = [round(i, 2) for i in box.tolist()]
+            to_save.append({
+                "category": id2label[label.item()],
+                "category_id": label.item(),
+                "confidence": round(score.item(), 3),
+                "xmin": box[0],
+                "ymin": box[1],
+                "xmax": box[2],
+                "ymax": box[3],
+                "proba": proba
+            })
+            print(
+                f"Detected {model.config.id2label[label.item()]} with confidence "
+                f"{round(score.item(), 3)} at location {box}"
+            )
