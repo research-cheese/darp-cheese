@@ -516,7 +516,6 @@ def evaluate_base_model(
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
         for threshold in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
             results = image_processor.post_process_object_detection(outputs, threshold=threshold, target_sizes=target_sizes)[0]
-            proba = F.softmax(outputs["logits"], dim=-1)
 
             for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
                 box = [round(i, 2) for i in box.tolist()]
@@ -538,5 +537,6 @@ def evaluate_base_model(
             with open(prediction_json_path, "w") as f:
                 f.write("")
                 for t in to_save:
-                        f.write(json.dumps(t))
-                        f.write("\n")
+                    if t["confidence"] <= threshold: continue
+                    f.write(json.dumps(t))
+                    f.write("\n")
