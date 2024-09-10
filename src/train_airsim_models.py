@@ -20,6 +20,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
     output_dir_base_model_path = os.path.join(output_dir_base, "model.pth")
 
     if not os.path.exists(output_dir_base_model_path):
+        print("Training", output_dir_base_model_path)
         train_base_model(
             checkpoint=checkpoint,
             id2label=AirsimObjectDetectionConfig.id2label,
@@ -36,6 +37,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             output_dir, "base", "model.pth"
         )
         if not os.path.exists(output_dir_base_dataset_model_path):
+            print("Training", output_dir_base_dataset_model_path)
             train_base_model(
                 checkpoint=output_dir_base_model_path,
                 id2label=AirsimObjectDetectionConfig.id2label,
