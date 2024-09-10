@@ -18,6 +18,7 @@ module load cuda-12.4.1-gcc-11.4.1
 
 source setup.sh
 
-wandb login --relogin
+wandb login e192b158d3530a037b508c0b483c2af979193c6b
+
 source train_airsim_models.sh
 source evaluate_airsim_models.sh
