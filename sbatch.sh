@@ -17,8 +17,5 @@ module load mamba/latest
 module load cuda-12.6.1-gcc-12.1.0
 
 source setup.sh
-
-wandb login e192b158d3530a037b508c0b483c2af979193c6b
-
 source train_airsim_models.sh
 source evaluate_airsim_models.sh
