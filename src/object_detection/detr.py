@@ -313,6 +313,7 @@ def build_trainer(
         remove_unused_columns=False,
         eval_do_concat_batches=False,
         push_to_hub=False,
+        report_to="wandb",
     )
 
     eval_compute_metrics_fn = partial(
@@ -330,7 +331,6 @@ def build_trainer(
         tokenizer=image_processor,
         data_collator=collate_fn,
         compute_metrics=eval_compute_metrics_fn,
-        report_to="wandb",
     )
 
     return trainer
