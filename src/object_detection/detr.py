@@ -289,7 +289,8 @@ def compute_metrics(evaluation_results, image_processor, threshold=0.0, id2label
 
     return metrics
 
-
+os.environ["WANDB_PROJECT"] = "nngu2-mcai"
+os.environ["WANDB_LOG_MODEL"] = "checkpoint"
 def build_trainer(
     model, image_processor, train_dataset, id2label, eval_dataset, output_path
 ) -> Trainer:
@@ -329,6 +330,7 @@ def build_trainer(
         tokenizer=image_processor,
         data_collator=collate_fn,
         compute_metrics=eval_compute_metrics_fn,
+        report_to="wandb",
     )
 
     return trainer
@@ -360,7 +362,6 @@ def train_model_on_dataset(
     trainer.train()
     trainer.save_model(os.path.join(output_path, "model.pth"))
     return trainer
-
 
 def train_base_model(
     checkpoint: Path,
