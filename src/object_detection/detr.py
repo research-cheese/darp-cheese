@@ -293,7 +293,7 @@ def compute_metrics(evaluation_results, image_processor, threshold=0.0, id2label
 # os.environ["WANDB_PROJECT"] = "nngu2-mcai"
 # os.environ["WANDB_LOG_MODEL"] = "checkpoint"
 def build_trainer(
-    model, image_processor, train_dataset, id2label, eval_dataset, output_path, run_name=""
+    model, image_processor, train_dataset, id2label, eval_dataset, output_path
 ) -> Trainer:
     training_args = TrainingArguments(
         output_dir=os.path.join(output_path, "outputs"),
