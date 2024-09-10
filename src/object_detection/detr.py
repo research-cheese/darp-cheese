@@ -295,7 +295,6 @@ os.environ["WANDB_LOG_MODEL"] = "checkpoint"
 def build_trainer(
     model, image_processor, train_dataset, id2label, eval_dataset, output_path, run_name=""
 ) -> Trainer:
-    wandb.init(project="nngu2-mcai", name=run_name)
     training_args = TrainingArguments(
         output_dir=os.path.join(output_path, "outputs"),
         num_train_epochs=30,
