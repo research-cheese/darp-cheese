@@ -11,6 +11,7 @@ from training_configs import AirsimObjectDetectionConfig
 
 for checkpoint in AirsimObjectDetectionConfig.checkpoints:
     output_dir_base = os.path.join(
+        ".",
         "output",
         AirsimObjectDetectionConfig.base_dataset,
         checkpoint,
@@ -28,7 +29,8 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
                 dataset_dir=AirsimObjectDetectionConfig.base_dataset,
                 output_dir=output_dir_base,
             )
-        except: pass
+        except:
+            pass
 
     try:
         evaluate_base_model(
@@ -40,7 +42,8 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
                 output_dir_base, "predictions", AirsimObjectDetectionConfig.test_dataset
             ),
         )
-    except: pass
+    except:
+        pass
     try:
         evaluate_base_model(
             checkpoint=output_dir_base_model_path,
@@ -51,13 +54,12 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
                 output_dir_base, "predictions", AirsimObjectDetectionConfig.val_dataset
             ),
         )
-    except: pass
+    except:
+        pass
 
     for dataset in AirsimObjectDetectionConfig.datasets:
 
-        output_dir = os.path.join(
-            "output", dataset, checkpoint
-        )
+        output_dir = os.path.join(".", "output", dataset, checkpoint)
         output_dir_base_dataset_path = os.path.join(output_dir, "base")
         output_dir_base_dataset_model_path = os.path.join(
             output_dir, "base", "model.pth"
@@ -72,7 +74,8 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
                     dataset_dir=dataset,
                     output_dir=output_dir_base_dataset_path,
                 )
-            except: pass
+            except:
+                pass
 
         try:
             evaluate_base_model(
@@ -86,7 +89,8 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
                     AirsimObjectDetectionConfig.test_dataset,
                 ),
             )
-        except: pass
+        except:
+            pass
 
         try:
             evaluate_base_model(
@@ -100,7 +104,8 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
                     AirsimObjectDetectionConfig.val_dataset,
                 ),
             )
-        except: pass
+        except:
+            pass
 
         # output_base_model_path = os.path.join(output_dir_base, "model.pth")
 
