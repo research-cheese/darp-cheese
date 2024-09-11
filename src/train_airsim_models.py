@@ -11,6 +11,9 @@ from training_configs import AirsimObjectDetectionConfig
 
 for checkpoint in AirsimObjectDetectionConfig.checkpoints:
     output_dir_base = os.path.join(
+        "/scratch",
+        "nngu2",
+        "darp-cheese",
         "output",
         AirsimObjectDetectionConfig.base_dataset,
         checkpoint,
@@ -32,20 +35,26 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
         id2label=AirsimObjectDetectionConfig.id2label,
         label2id=AirsimObjectDetectionConfig.label2id,
         dataset_dir=AirsimObjectDetectionConfig.test_dataset,
-        prediction_output_dir=os.path.join(output_dir_base, "predictions", AirsimObjectDetectionConfig.test_dataset)
+        prediction_output_dir=os.path.join(
+            output_dir_base, "predictions", AirsimObjectDetectionConfig.test_dataset
+        ),
     )
-    
+
     evaluate_base_model(
         checkpoint=output_dir_base_model_path,
         id2label=AirsimObjectDetectionConfig.id2label,
         label2id=AirsimObjectDetectionConfig.label2id,
         dataset_dir=AirsimObjectDetectionConfig.val_dataset,
-        prediction_output_dir=os.path.join(output_dir_base, "predictions", AirsimObjectDetectionConfig.val_dataset)
+        prediction_output_dir=os.path.join(
+            output_dir_base, "predictions", AirsimObjectDetectionConfig.val_dataset
+        ),
     )
 
     for dataset in AirsimObjectDetectionConfig.datasets:
 
-        output_dir = os.path.join("output", dataset, checkpoint)
+        output_dir = os.path.join(
+            "/scratch", "nngu2", "darp-cheese", "output", dataset, checkpoint
+        )
         output_dir_base_dataset_path = os.path.join(output_dir, "base")
         output_dir_base_dataset_model_path = os.path.join(
             output_dir, "base", "model.pth"
@@ -59,21 +68,29 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
                 dataset_dir=dataset,
                 output_dir=output_dir_base_dataset_path,
             )
-            
+
         evaluate_base_model(
             checkpoint=output_dir_base_dataset_model_path,
             id2label=AirsimObjectDetectionConfig.id2label,
             label2id=AirsimObjectDetectionConfig.label2id,
             dataset_dir=AirsimObjectDetectionConfig.test_dataset,
-            prediction_output_dir=os.path.join(output_dir_base_dataset_path, "predictions", AirsimObjectDetectionConfig.test_dataset)
+            prediction_output_dir=os.path.join(
+                output_dir_base_dataset_path,
+                "predictions",
+                AirsimObjectDetectionConfig.test_dataset,
+            ),
         )
-        
+
         evaluate_base_model(
             checkpoint=output_dir_base_dataset_model_path,
             id2label=AirsimObjectDetectionConfig.id2label,
             label2id=AirsimObjectDetectionConfig.label2id,
             dataset_dir=AirsimObjectDetectionConfig.val_dataset,
-            prediction_output_dir=os.path.join(output_dir_base_dataset_path, "predictions", AirsimObjectDetectionConfig.val_dataset)
+            prediction_output_dir=os.path.join(
+                output_dir_base_dataset_path,
+                "predictions",
+                AirsimObjectDetectionConfig.val_dataset,
+            ),
         )
 
         # output_base_model_path = os.path.join(output_dir_base, "model.pth")
