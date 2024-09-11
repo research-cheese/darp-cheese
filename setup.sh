@@ -17,4 +17,4 @@ pip install dataclasses
 pip install numpy
 pip install pycocotools
 pip install transformers
-pip install wandb
+# pip install wandb
