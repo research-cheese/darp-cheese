@@ -316,6 +316,7 @@ def build_trainer(
         push_to_hub=False,
         report_to="wandb",
         logging_steps=10,
+        resume_from_checkpoint=True
     )
 
     eval_compute_metrics_fn = partial(
