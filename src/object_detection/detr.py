@@ -515,7 +515,6 @@ def evaluate_base_model(
     to_save = []
     for data in os.listdir(dataset_dir):
         if os.path.exists(os.path.join(prediction_output_dir, f"threshold_0.9", f"{data}.json")): continue
-        
         if not data.endswith(".jpg") and not data.endswith(".png"): continue
 
         image = Image.open(os.path.join(dataset_dir, data))
