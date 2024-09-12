@@ -19,8 +19,8 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
     )
     output_dir_base_model_path = os.path.join(output_dir_base, "model.pth")
 
+    print("Training", output_dir_base_model_path)
     if not os.path.exists(output_dir_base_model_path):
-        print("Training", output_dir_base_model_path)
         train_base_model(
             checkpoint=checkpoint,
             id2label=AirsimObjectDetectionConfig.id2label,
@@ -28,6 +28,8 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             dataset_dir=AirsimObjectDetectionConfig.base_dataset,
             output_dir=output_dir_base,
         )
+    
+    print("Evaluating", "TEST", output_dir_base_model_path)
     evaluate_base_model(
         checkpoint=output_dir_base_model_path,
         id2label=AirsimObjectDetectionConfig.id2label,
@@ -37,6 +39,8 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             output_dir_base, "predictions", AirsimObjectDetectionConfig.test_dataset
         ),
     )
+
+    print("Evaluating", "VAL", output_dir_base_model_path)
     evaluate_base_model(
         checkpoint=output_dir_base_model_path,
         id2label=AirsimObjectDetectionConfig.id2label,
@@ -54,8 +58,8 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
         output_dir_base_dataset_model_path = os.path.join(
             output_dir, "base", "model.pth"
         )
+        print("Training", output_dir_base_dataset_model_path)
         if not os.path.exists(output_dir_base_dataset_model_path):
-            print("Training", output_dir_base_dataset_model_path)
             train_base_model(
                 checkpoint=output_dir_base_model_path,
                 id2label=AirsimObjectDetectionConfig.id2label,
@@ -64,6 +68,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
                 output_dir=output_dir_base_dataset_path,
             )
 
+        print("TEST", output_dir_base_dataset_model_path)
         evaluate_base_model(
             checkpoint=output_dir_base_dataset_model_path,
             id2label=AirsimObjectDetectionConfig.id2label,
@@ -76,6 +81,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             ),
         )
 
+        print("Val", output_dir_base_dataset_model_path)
         evaluate_base_model(
             checkpoint=output_dir_base_dataset_model_path,
             id2label=AirsimObjectDetectionConfig.id2label,
