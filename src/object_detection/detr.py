@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import shutil
 from typing import List, Tuple, Dict, Any
@@ -513,7 +514,7 @@ def evaluate_base_model(
     to_save = []
     for data in os.listdir(dataset_dir):
         if not data.endswith(".jpg") and not data.endswith(".png"): continue
-        print("Evaluating", data, flush=True)
+        print("Evaluating", data, flush=True, file=sys.stdout)
         
         if os.path.exists(os.path.join(prediction_output_dir, f"threshold_0.9", f"{data}.json")): continue
 
