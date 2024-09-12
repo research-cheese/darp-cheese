@@ -2,7 +2,6 @@ python3 -m venv venv
 source venv/bin/activate
 
 export HF_DATASETS_CACHE="/scratch/nngu2/hf-datasets"
-export WANDB_DIR="/scratch/nngu2/wandb"
 
 pip install peft
 

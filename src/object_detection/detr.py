@@ -294,7 +294,6 @@ os.environ["WANDB_PROJECT"] = "nngu2-mcai"
 os.environ["WANDB_LOG_MODEL"] = "checkpoint"
 
 os.environ["HF_DATASETS_CACHE"] = "/scratch/nngu2/hf-datasets"
-os.environ["WANDB_DIR"] = "/scratch/nngu2/wandb"
 
 def build_trainer(
     model, image_processor, train_dataset, id2label, eval_dataset, output_path
