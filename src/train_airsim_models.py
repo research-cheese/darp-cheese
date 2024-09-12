@@ -9,6 +9,7 @@ import os
 
 from training_configs import AirsimObjectDetectionConfig
 
+print("Training Airsim models")
 for checkpoint in AirsimObjectDetectionConfig.checkpoints:
     output_dir_base = os.path.join(
         ".",
