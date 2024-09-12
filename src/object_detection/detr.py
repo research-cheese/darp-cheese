@@ -421,8 +421,6 @@ def train_peft_model(
         label2id=label2id,
         ignore_mismatched_sizes=True,
     )
-    print(model)
-    input("Press Enter to continue...")
     peft_model = get_peft_model(model, peft_config)
     train_model_on_dataset(
         model=peft_model,
@@ -515,7 +513,7 @@ def evaluate_base_model(
     to_save = []
     for data in os.listdir(dataset_dir):
         if not data.endswith(".jpg") and not data.endswith(".png"): continue
-        print("Evaluating", data)
+        print("Evaluating", data, flush=True)
         
         if os.path.exists(os.path.join(prediction_output_dir, f"threshold_0.9", f"{data}.json")): continue
 
