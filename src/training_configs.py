@@ -7,20 +7,20 @@ class AirsimObjectDetectionConfig:
     val_dataset = "data/mcai/airsim-data/mixed/val/train"
     
     datasets = [
-        # "data/mcai/airsim-data/mixed/dust-10",
-        # "data/mcai/airsim-data/mixed/dust-100",
+        "data/mcai/airsim-data/mixed/dust-10",
+        "data/mcai/airsim-data/mixed/dust-100",
         "data/mcai/airsim-data/mixed/dust-1000",
-        # "data/mcai/airsim-data/mixed/fog-10",
-        # "data/mcai/airsim-data/mixed/fog-100",
+        "data/mcai/airsim-data/mixed/fog-10",
+        "data/mcai/airsim-data/mixed/fog-100",
         "data/mcai/airsim-data/mixed/fog-1000",
-        # "data/mcai/airsim-data/mixed/snow-10",
-        # "data/mcai/airsim-data/mixed/snow-100"
+        "data/mcai/airsim-data/mixed/snow-10",
+        "data/mcai/airsim-data/mixed/snow-100"
         "data/mcai/airsim-data/mixed/snow-1000",
-        # "data/mcai/airsim-data/mixed/rain-10",
-        # "data/mcai/airsim-data/mixed/rain-100",
+        "data/mcai/airsim-data/mixed/rain-10",
+        "data/mcai/airsim-data/mixed/rain-100",
         "data/mcai/airsim-data/mixed/rain-1000",
-        # "data/mcai/airsim-data/mixed/maple_leaf-10",
-        # "data/mcai/airsim-data/mixed/maple_leaf-100",
+        "data/mcai/airsim-data/mixed/maple_leaf-10",
+        "data/mcai/airsim-data/mixed/maple_leaf-100",
         "data/mcai/airsim-data/mixed/maple_leaf-1000",
     ]
     checkpoints = [

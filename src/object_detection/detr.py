@@ -514,6 +514,8 @@ def evaluate_base_model(
 
     to_save = []
     for data in os.listdir(dataset_dir):
+        if os.path.exists(os.path.join(prediction_output_dir, f"threshold_0.9", f"{data}.json")): continue
+        
         if not data.endswith(".jpg") and not data.endswith(".png"): continue
 
         image = Image.open(os.path.join(dataset_dir, data))
@@ -522,6 +524,12 @@ def evaluate_base_model(
         outputs = model(**inputs.to(device))
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
         for threshold in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
+            threshold_output_dir = os.path.join(prediction_output_dir, f"threshold_{threshold}")
+            prediction_json_path = os.path.join(threshold_output_dir, f"{data}.json")
+
+            if not os.path.exists(threshold_output_dir):
+                os.makedirs(threshold_output_dir)
+
             results = image_processor.post_process_object_detection(outputs, threshold=threshold, target_sizes=target_sizes)[0]
             for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
                 box = [round(i, 2) for i in box.tolist()]
@@ -535,11 +543,6 @@ def evaluate_base_model(
                     "ymax": box[3]
                 })
 
-            threshold_output_dir = os.path.join(prediction_output_dir, f"threshold_{threshold}")
-            if os.path.exists(threshold_output_dir):
-                shutil.rmtree(threshold_output_dir)
-            os.makedirs(threshold_output_dir)
-            prediction_json_path = os.path.join(threshold_output_dir, f"{data}.json")
 
             with open(prediction_json_path, "w") as f:
                 f.write("")
