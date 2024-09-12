@@ -11,6 +11,8 @@
 #SBATCH --mail-user="%nngu2@asu.edu"
 #SBATCH --export=NONE   # Purge the job-submitting shell environment
 
+# Make sure python prints stuff
+export PYTHONUNBUFFERED=TRUE
 
 #Load CuDA
 module load mamba/latest
