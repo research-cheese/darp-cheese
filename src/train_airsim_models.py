@@ -55,7 +55,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
 
     for dataset in AirsimObjectDetectionConfig.datasets:
 
-        output_dir = os.path.join(".", "output", dataset, checkpoint)
+        output_dir = os.path.join("output", dataset, checkpoint)
         output_dir_base_dataset_path = os.path.join(output_dir, "base")
         output_dir_base_dataset_model_path = os.path.join(
             output_dir, "base", "model.pth"
