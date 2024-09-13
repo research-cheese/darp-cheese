@@ -4,6 +4,7 @@ source venv/bin/activate
 # Make sure python prints stuff
 export PYTHONUNBUFFERED=TRUE
 export HF_DATASETS_CACHE="/scratch/nngu2/hf-datasets"
+export HF_HOME="/scratch/nngu2/.cache"
 export WANDB_MODE=online
 
 pip install peft
