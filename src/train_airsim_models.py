@@ -8,11 +8,17 @@ from object_detection.detr import (
 
 import sys
 import os
+import shutil
 
 from training_configs import AirsimObjectDetectionConfig
 
+def bust_cache():
+    cache_path = "/scratch/nngu2/.cache"
+    if os.path.exists(cache_path): shutil.rmtree(cache_path)
+
 print("Training Airsim models", flush=True, file=sys.stdout)
 for checkpoint in AirsimObjectDetectionConfig.checkpoints:
+    bust_cache()
     output_dir_base = os.path.join(
         "output",
         AirsimObjectDetectionConfig.base_dataset,
@@ -54,6 +60,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
     )
 
     for dataset in AirsimObjectDetectionConfig.datasets:
+        bust_cache()
 
         output_dir = os.path.join("output", dataset, checkpoint)
         output_dir_base_dataset_path = os.path.join(output_dir, "base")

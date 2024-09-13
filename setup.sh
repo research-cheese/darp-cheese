@@ -5,6 +5,9 @@ source venv/bin/activate
 export PYTHONUNBUFFERED=TRUE
 export HF_DATASETS_CACHE="/scratch/nngu2/hf-datasets"
 export HF_HOME="/scratch/nngu2/.cache"
+
+export WANDB_CACHE_DIR="/scratch/nngu2/.cache/wandb"
+export WANDB_CONFIG_DIR="/scratch/nngu2/.config/wandb"
 export WANDB_MODE=online
 
 pip install peft
