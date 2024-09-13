@@ -293,7 +293,6 @@ def compute_metrics(evaluation_results, image_processor, threshold=0.0, id2label
 import wandb
 os.environ["WANDB_PROJECT"] = "nngu2-mcai"
 os.environ["WANDB_LOG_MODEL"] = "checkpoint"
-os.environ["HF_DATASETS_CACHE"] = "/scratch/nngu2/hf-datasets"
 
 def build_trainer(
     model, image_processor, train_dataset, id2label, eval_dataset, output_path
@@ -314,11 +313,12 @@ def build_trainer(
         eval_strategy="epoch",
         save_strategy="epoch",
         save_total_limit=2,
+        save_steps=10,
+        logging_steps=10,
         remove_unused_columns=False,
         eval_do_concat_batches=False,
         push_to_hub=False,
         report_to=["wandb"],
-        logging_steps=10,
         resume_from_checkpoint=True
     )
 
