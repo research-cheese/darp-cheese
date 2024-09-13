@@ -14,7 +14,7 @@ class AirsimObjectDetectionConfig:
         "data/mcai/airsim-data/mixed/fog-100",
         "data/mcai/airsim-data/mixed/fog-1000",
         "data/mcai/airsim-data/mixed/snow-10",
-        "data/mcai/airsim-data/mixed/snow-100"
+        "data/mcai/airsim-data/mixed/snow-100",
         "data/mcai/airsim-data/mixed/snow-1000",
         "data/mcai/airsim-data/mixed/rain-10",
         "data/mcai/airsim-data/mixed/rain-100",

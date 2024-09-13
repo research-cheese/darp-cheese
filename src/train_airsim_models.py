@@ -14,7 +14,6 @@ from training_configs import AirsimObjectDetectionConfig
 print("Training Airsim models", flush=True, file=sys.stdout)
 for checkpoint in AirsimObjectDetectionConfig.checkpoints:
     output_dir_base = os.path.join(
-        ".",
         "output",
         AirsimObjectDetectionConfig.base_dataset,
         checkpoint,
@@ -80,7 +79,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             prediction_output_dir=os.path.join(
                 output_dir_base_dataset_path,
                 "predictions",
-                AirsimObjectDetectionConfig.test_dataset,
+                "test",
             ),
         )
 
@@ -93,7 +92,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             prediction_output_dir=os.path.join(
                 output_dir_base_dataset_path,
                 "predictions",
-                AirsimObjectDetectionConfig.val_dataset,
+                "val",
             ),
         )
 
