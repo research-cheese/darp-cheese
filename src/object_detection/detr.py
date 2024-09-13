@@ -312,7 +312,6 @@ def build_trainer(
         load_best_model_at_end=True,
         eval_strategy="epoch",
         save_strategy="epoch",
-        save_total_limit=2,
         save_steps=10,
         logging_steps=10,
         remove_unused_columns=False,
