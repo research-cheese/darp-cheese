@@ -79,7 +79,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             prediction_output_dir=os.path.join(
                 output_dir_base_dataset_path,
                 "predictions",
-                "test",
+                AirsimObjectDetectionConfig.test_dataset,
             ),
         )
 
@@ -92,7 +92,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
             prediction_output_dir=os.path.join(
                 output_dir_base_dataset_path,
                 "predictions",
-                "val",
+                AirsimObjectDetectionConfig.val_dataset,
             ),
         )
 
