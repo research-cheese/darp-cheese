@@ -32,7 +32,7 @@ def create_mario_ground_truth(ground_truth_metadata):
         ymax = ymin + objects["bbox"][i][3]
         ground_truth_list.append(
             {
-                "class": AirsimObjectDetectionConfig.id2label[objects["id"][i]],
+                "class": AirsimObjectDetectionConfig.id2label[objects["category"][i]],
                 "xmin": xmin,
                 "ymin": ymin,
                 "xmax": xmax,
