@@ -27,15 +27,15 @@ class AirsimObjectDetectionConfig:
     checkpoints = [
         # Facebook
         "facebook/detr-resnet-101",
-        "facebook/detr-resnet-50",
+        # "facebook/detr-resnet-50",
         
-        # # Peking University
-        "PekingU/rtdetr_r18vd_coco_o365",
+        # # # Peking University
+        # "PekingU/rtdetr_r18vd_coco_o365",
         
-        # # HUST Vision Lab
-        "hustvl/yolos-tiny",
-        "hustvl/yolos-small",
-        "hustvl/yolos-base",
+        # # # HUST Vision Lab
+        # "hustvl/yolos-tiny",
+        # "hustvl/yolos-small",
+        # "hustvl/yolos-base",
     ]
 
     thresholds = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
