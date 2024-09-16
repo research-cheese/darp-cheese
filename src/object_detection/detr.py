@@ -317,7 +317,7 @@ def build_trainer(
         remove_unused_columns=False,
         eval_do_concat_batches=False,
         push_to_hub=False,
-        report_to=["wandb"],
+        # report_to=["wandb"],
         # resume_from_checkpoint=True
     )
 
