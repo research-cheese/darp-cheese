@@ -10,6 +10,7 @@ export WANDB_CACHE_DIR="/scratch/nngu2/.cache/wandb"
 export WANDB_CONFIG_DIR="/scratch/nngu2/.config/wandb"
 export WANDB_MODE=online
 
+conda install pytorch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 pip install peft
 
