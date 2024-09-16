@@ -27,3 +27,4 @@ pip install numpy
 pip install pycocotools
 pip install transformers
 pip install wandb
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
