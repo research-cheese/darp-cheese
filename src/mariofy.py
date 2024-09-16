@@ -1,6 +1,7 @@
 import pandas
 import shutil
 import json
+import os
 
 from training_configs import AirsimObjectDetectionConfig
 
@@ -66,10 +67,13 @@ for model in AirsimObjectDetectionConfig.checkpoints:
     for dataset in AirsimObjectDetectionConfig.datasets:
         for eval_dataset in eval_dataset_paths:
             for threshold in AirsimObjectDetectionConfig.thresholds:
+                mario_output_path = f"mario/{model}//threshold_{threshold}/{get_name_from_path(dataset)}/{get_name_from_path(eval_dataset)}"
+                if os.path.exists(mario_output_path): shutil.rmtree(mario_output_path)
+                os.makedirs(mario_output_path, exist_ok=True)                    
                 mariofy(
                     model=model,
                     dataset=dataset,
                     eval_dataset=eval_dataset,
-                    output_dir=f"mario/{model}/{get_name_from_path(dataset)}/{get_name_from_path(eval_dataset)}",
+                    output_dir=mario_output_path,
                     threshold=threshold,
                 )
