@@ -52,6 +52,7 @@ def mariofy(model, dataset, eval_dataset, output_dir, threshold):
     ground_truth_metadata_list = pandas.read_json(ground_truth_metadata_path, lines=True).to_dict(orient="records")
     for ground_truth_metadata in ground_truth_metadata_list:
         print(ground_truth_metadata)
+        os.mkdir(f"{output_dir}/{ground_truth_metadata['file_name']}")
         file_name = ground_truth_metadata["file_name"]
         image_path = f"{images_folder_path}/{file_name}"
         prediction_path = f"{predictions_folder_path}/{file_name}.json"
