@@ -16,6 +16,7 @@ pip install peft
 pip install datasets
 
 # transformers
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 pip install transformers[torch]
 
 pip install pillow
@@ -27,4 +28,3 @@ pip install numpy
 pip install pycocotools
 pip install transformers
 pip install wandb
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
