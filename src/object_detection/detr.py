@@ -388,6 +388,7 @@ def train_base_model(
         label2id=label2id,
         ignore_mismatched_sizes=True,
     )
+    model.to("cuda")
 
     train_model_on_dataset(
         model=model,
