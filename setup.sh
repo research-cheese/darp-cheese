@@ -7,7 +7,7 @@ export WANDB_CACHE_DIR="/scratch/nngu2/.cache/wandb"
 export WANDB_CONFIG_DIR="/scratch/nngu2/.config/wandb"
 export WANDB_MODE=online
 
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu125
 pip install peft
 
 # datasets

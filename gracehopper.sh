@@ -16,7 +16,7 @@ python3 -m venv venv
 source venv/bin/activate
 
 #Load CuDA
-module load cuda-12.4.1-gcc-11.4.1
+# module load cuda-12.4.1-gcc-11.4.1
 
 source setup.sh
 source train_airsim_models.sh
