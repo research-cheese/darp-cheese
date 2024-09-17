@@ -13,6 +13,9 @@
 #SBATCH --export=NONE   # Purge the job-submitting shell environment
 
 
+conda create -n pytorch_cuda python=3.9
+conda activate pytorch_cuda
+
 #Load CuDA
 module load cuda-12.4.1-gcc-11.4.1
 module load nvhpc-23.7-gcc-11.4.1
