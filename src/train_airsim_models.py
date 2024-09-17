@@ -6,6 +6,10 @@ from object_detection.detr import (
     train_peft_model_lntuning,
 )
 
+import torch
+print(torch.cuda.is_available())
+
+
 import sys
 import os
 import shutil
