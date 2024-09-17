@@ -12,13 +12,11 @@
 #SBATCH --mail-user="%nngu2@asu.edu"
 #SBATCH --export=NONE   # Purge the job-submitting shell environment
 
-
-conda create -n pytorch_cuda python=3.9
-conda activate pytorch_cuda
+python3 -m venv venv
+source venv/bin/activate
 
 #Load CuDA
 module load cuda-12.4.1-gcc-11.4.1
-module load nvhpc-23.7-gcc-11.4.1
 
 source setup.sh
 source train_airsim_models.sh
