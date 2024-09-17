@@ -7,7 +7,8 @@ from object_detection.detr import (
 )
 
 import torch
-print(torch.cuda.is_available())
+print(torch.cuda.is_available())  # This should return True now.
+print(torch.cuda.current_device())  # Prints the current GPU device.
 
 
 import sys
