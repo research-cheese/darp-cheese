@@ -318,7 +318,7 @@ def build_trainer(
         eval_do_concat_batches=False,
         push_to_hub=False,
         # report_to=["wandb"],
-        # resume_from_checkpoint=True
+        resume_from_checkpoint=True
     )
 
     eval_compute_metrics_fn = partial(
