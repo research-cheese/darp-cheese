@@ -515,7 +515,7 @@ def evaluate_base_model(
         if not data.endswith(".jpg") and not data.endswith(".png"): continue
         print("Evaluating", data, flush=True, file=sys.stdout)
         
-        if os.path.exists(os.path.join(prediction_output_dir, f"threshold_0.9", f"{data}.json")): continue
+        if os.path.exists(os.path.join(prediction_output_dir, f"threshold_0.99", f"{data}.json")): continue
 
         image = Image.open(os.path.join(dataset_dir, data))
         image = image.convert("RGB")
