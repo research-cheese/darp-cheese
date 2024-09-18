@@ -37,4 +37,5 @@ mamba install -c conda-forge numpy
 mamba install -c conda-forge pycocotools
 mamba install -c conda-forge transformers
 mamba install -c conda-forge wandb
+
 source train_airsim_models.sh
