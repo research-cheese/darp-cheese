@@ -12,11 +12,25 @@
 #SBATCH --mail-user="%nngu2@asu.edu"
 #SBATCH --export=NONE   # Purge the job-submitting shell environment
 
-python3 -m venv venv
-source venv/bin/activate
-
 #Load CuDA
-# module load cuda-12.4.1-gcc-11.4.1
+module load cuda-12.4.1-gcc-11.4.1
 
-source setup.sh
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu125
+pip install peft
+
+# datasets
+pip install datasets
+
+# transformers
+pip install transformers[torch]
+
+pip install pillow
+pip install albumentations
+pip install timm
+pip install torchmetrics
+pip install dataclasses
+pip install numpy
+pip install pycocotools
+pip install transformers
+pip install wandb
 source train_airsim_models.sh
