@@ -16,8 +16,9 @@
 module load cuda-12.4.1-gcc-11.4.1
 module load mamba/latest
  
-mamba create -n venv -c conda-forge pandas torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124 peft datasets transformers[torch] pillow albumentations timm torchmetrics dataclasses numpy pycocotools wandb pandas
-
+mamba create -n venv -c conda-forge pandas peft datasets transformers[torch] pillow albumentations timm torchmetrics dataclasses numpy pycocotools wandb pandas
 source activate venv
+
+mamba install -n venv -c conda-forge torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
 source train_airsim_models.sh
