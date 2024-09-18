@@ -522,7 +522,7 @@ def evaluate_base_model(
         inputs = image_processor(images=[image], return_tensors="pt")
         outputs = model(**inputs.to(device))
         target_sizes = torch.tensor([[image.size[1], image.size[0]]])
-        for threshold in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
+        for threshold in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.98, 0.99]:
             threshold_output_dir = os.path.join(prediction_output_dir, f"threshold_{threshold}")
             prediction_json_path = os.path.join(threshold_output_dir, f"{data}.json")
 
