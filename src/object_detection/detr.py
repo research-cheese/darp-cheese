@@ -150,8 +150,8 @@ def apply_image_augmentations(dataset: Dataset, image_processor):
         [
             albumentations.Perspective(p=0.1),
             albumentations.HorizontalFlip(p=0.5),
-            albumentations.RandomBrightnessContrast(p=0.5),
-            albumentations.HueSaturationValue(p=0.1),
+            # albumentations.RandomBrightnessContrast(p=0.5),
+            # albumentations.HueSaturationValue(p=0.1),
         ],
         bbox_params=albumentations.BboxParams(
             format="coco", label_fields=["category"], clip=True, min_area=10
