@@ -19,7 +19,7 @@ module load mamba/latest
 mamba create -n nngu2 -c conda-forge
 source activate nngu2
 
-mamba install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+mamba install pytorch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia
 mamba install anaconda::pandas
 mamba install -c huggingface -c conda-forge datasets
 
