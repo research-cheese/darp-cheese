@@ -17,7 +17,7 @@ module load cuda-12.4.1-gcc-11.4.1
 module load mamba/latest
 
 mamba create -n nngu2 -c conda-forge
-source activate -n nngu2
+source activate nngu2
 
 mamba install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 mamba install anaconda::pandas
