@@ -25,7 +25,7 @@ print("Training Airsim models", flush=True, file=sys.stdout)
 for checkpoint in AirsimObjectDetectionConfig.checkpoints:
     bust_cache()
     output_dir_base = os.path.join(
-        "epochs_output",
+        "longer_epochs",
         AirsimObjectDetectionConfig.base_dataset,
         checkpoint,
         "base",
