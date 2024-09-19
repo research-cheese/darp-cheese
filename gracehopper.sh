@@ -16,5 +16,22 @@
 module load cuda-12.4.1-gcc-11.4.1
 module load mamba/latest
 
-source setup.sh
+mamba create -n nngu2 -c conda-forge
+source activate nngu2
+
+mamba install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+mamba install anaconda::pandas
+mamba install -c huggingface -c conda-forge datasets
+
+mamba install conda-forge::transformers[torch]
+mamba install anaconda::pillow
+mamba install conda-forge::albumentations
+mamba install conda-forge::timm
+mamba install conda-forge::torchmetrics
+mamba install conda-forge::dataclasses
+mamba install anaconda::numpy
+mamba install conda-forge::pycocotools
+mamba install conda-forge::wandb
+mamba install anaconda::pandas
+
 source train_airsim_models.sh
