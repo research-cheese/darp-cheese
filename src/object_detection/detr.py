@@ -302,7 +302,7 @@ def build_trainer(
         output_dir=os.path.join(output_path, "outputs"),
         num_train_epochs=500,
         fp16=False,
-        per_device_train_batch_size=128,
+        per_device_train_batch_size=256,
         learning_rate=5e-5,
         lr_scheduler_type="cosine",
         weight_decay=1e-4,
