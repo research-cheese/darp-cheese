@@ -15,8 +15,9 @@
 #Load CuDA
 module load cuda-12.4.1-gcc-11.4.1
 module load mamba/latest
- 
-source activate venv
+
+mamba create -p ./venv -c conda-forge
+source activate -p ./venv
 
 mamba install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 mamba install anaconda::pandas
