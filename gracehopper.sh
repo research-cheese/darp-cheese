@@ -22,6 +22,8 @@ source activate nngu2
 mamba install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 mamba install anaconda::pandas
 mamba install conda-forge::datasets
+conda install anaconda::datasets
+
 mamba install conda-forge::transformers[torch]
 mamba install anaconda::pillow
 conda install conda-forge::albumentations
