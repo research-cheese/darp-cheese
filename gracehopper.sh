@@ -22,17 +22,17 @@ source activate nngu2
 mamba install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 mamba install anaconda::pandas
 mamba install conda-forge::datasets
-conda install anaconda::datasets
+mamba install anaconda::datasets
 
 mamba install conda-forge::transformers[torch]
 mamba install anaconda::pillow
-conda install conda-forge::albumentations
-conda install conda-forge::timm
-conda install conda-forge::torchmetrics
-conda install conda-forge::dataclasses
-conda install anaconda::numpy
-conda install conda-forge::pycocotools
-conda install conda-forge::wandb
-conda install anaconda::pandas
+mamba install conda-forge::albumentations
+mamba install conda-forge::timm
+mamba install conda-forge::torchmetrics
+mamba install conda-forge::dataclasses
+mamba install anaconda::numpy
+mamba install conda-forge::pycocotools
+mamba install conda-forge::wandb
+mamba install anaconda::pandas
 
 source train_airsim_models.sh
