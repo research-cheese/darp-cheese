@@ -16,10 +16,20 @@
 module load cuda-12.4.1-gcc-11.4.1
 module load mamba/latest
  
-mamba create -n venv -c conda-forge pandas peft datasets transformers[torch] pillow albumentations timm torchmetrics dataclasses numpy pycocotools wandb pandas
 source activate venv
 
-mamba install -c conda-forge torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
-mamba install -c conda-forge pandas
+mamba install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+mamba install anaconda::pandas
+mamba install conda-forge::datasets
+mamba install conda-forge::transformers[torch]
+mamba install anaconda::pillow
+conda install conda-forge::albumentations
+conda install conda-forge::timm
+conda install conda-forge::torchmetrics
+conda install conda-forge::dataclasses
+conda install anaconda::numpy
+conda install conda-forge::pycocotools
+conda install conda-forge::wandb
+conda install anaconda::pandas
 
 source train_airsim_models.sh
