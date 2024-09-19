@@ -13,8 +13,8 @@
 #SBATCH --export=NONE   # Purge the job-submitting shell environment
 
 #Load CuDA
-module load cuda-12.4.1-gcc-11.4.1
 module load mamba/latest
+module load cuda-12.4.1-gcc-11.4.1
 
 mamba create -n pytorch-gpu-2.3.1 -c conda-forge
 source activate pytorch-gpu-2.3.1
