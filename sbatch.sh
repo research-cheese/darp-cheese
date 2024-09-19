@@ -15,6 +15,8 @@
 module load mamba/latest
 module load cuda-12.6.1-gcc-12.1.0
 
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
 python3 -m venv venv
 source venv/bin/activate
 
