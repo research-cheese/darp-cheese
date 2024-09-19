@@ -299,7 +299,7 @@ def build_trainer(
 ) -> Trainer:
     training_args = TrainingArguments(
         output_dir=os.path.join(output_path, "outputs"),
-        num_train_epochs=200,
+        num_train_epochs=400,
         fp16=False,
         per_device_train_batch_size=8,
         dataloader_num_workers=4,
