@@ -67,7 +67,7 @@ for checkpoint in AirsimObjectDetectionConfig.checkpoints:
     for dataset in AirsimObjectDetectionConfig.datasets:
         bust_cache()
 
-        output_dir = os.path.join("epochs_output", dataset, checkpoint)
+        output_dir = os.path.join("longer_epochs", dataset, checkpoint)
         output_dir_base_dataset_path = os.path.join(output_dir, "base")
         output_dir_base_dataset_model_path = os.path.join(
             output_dir, "base", "model.pth"
