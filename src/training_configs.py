@@ -18,10 +18,10 @@ class AirsimObjectDetectionConfig:
         # "data/mcai/airsim-data/mixed/snow-1000",
         # "data/mcai/airsim-data/mixed/rain-10",
         # "data/mcai/airsim-data/mixed/rain-100",
-        "data/mcai/airsim-data/mixed/rain-1000",
+        # "data/mcai/airsim-data/mixed/rain-1000",
         # "data/mcai/airsim-data/mixed/maple_leaf-10",
         # "data/mcai/airsim-data/mixed/maple_leaf-100",
-        # "data/mcai/airsim-data/mixed/maple_leaf-1000",
+        "data/mcai/airsim-data/mixed/maple_leaf-1000",
     ]
     
     checkpoints = [
