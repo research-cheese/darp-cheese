@@ -16,8 +16,8 @@
 module load mamba/latest
 module load cuda-12.4.1-gcc-11.4.1
 
-mamba create -n pytorch-gpu-2.3.1 -c conda-forge
-source activate pytorch-gpu-2.3.1
+mamba create -n nngu -c conda-forge
+source activate nngu
 
 mamba install anaconda::pandas
 mamba install -c huggingface -c conda-forge datasets
